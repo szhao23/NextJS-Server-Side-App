@@ -1,4 +1,7 @@
-"use server"; // Whatever written in this code will be executed as a server action
+"use server";
+import AnimeCard, { AnimeProp } from "@/components/AnimeCard";
+
+// Whatever written in this code will be executed as a server action
 
 export const fetchAnime = async (page: number) => {
   // Fetch the Data from URL
@@ -12,5 +15,7 @@ export const fetchAnime = async (page: number) => {
   //   console.log("Response: ", data);
 
   // Return Data after Response has been Fetched
-  return data;
+  return data.map((item: AnimeProp, index: number) => (
+    <AnimeCard key={item.id} anime={item} index={index} />
+  ));
 };
